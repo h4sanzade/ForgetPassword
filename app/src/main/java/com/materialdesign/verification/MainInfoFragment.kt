@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.materialdesign.verification.databinding.FragmentMainInfoBinding
 
 class MainInfoFragment : Fragment() {
@@ -71,17 +73,31 @@ class MainInfoFragment : Fragment() {
             )
         }
     }
-
     private fun showGenderSelectionDialog() {
 
-        val genders = arrayOf("Male", "Female", "Other")
+        val dialogView = layoutInflater.inflate(R.layout.popup_layout, null)
 
-        androidx.appcompat.app.AlertDialog.Builder(requireContext())
-            .setTitle("Select Gender")
-            .setItems(genders) { dialog, which ->
-                binding.genderEditText.setText(genders[which])
-                dialog.dismiss()
+
+        val btnMale = dialogView.findViewById<Button>(R.id.btnMale)
+        val btnFemale = dialogView.findViewById<Button>(R.id.btnFemale)
+
+
+        MaterialAlertDialogBuilder(requireContext())
+            .setView(dialogView)
+            .setCancelable(true)
+            .create()
+            .apply {
+                btnMale.setOnClickListener {
+                    binding.genderEditText.setText("Male")
+                    dismiss()
+                }
+
+                btnFemale.setOnClickListener {
+                    binding.genderEditText.setText("Female")
+                    dismiss()
+                }
+
+                show()
             }
-            .show()
     }
 }
