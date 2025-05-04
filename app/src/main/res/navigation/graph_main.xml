@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/graph_main"
+    app:startDestination="@id/registrationFragment">
+
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.materialdesign.verification.RegistrationFragment"
+        android:label="fragment_registration"
+        tools:layout="@layout/fragment_registration" >
+        <argument
+            android:name="emailAdress"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_registrationFragment_to_emailVerificationFragment"
+            app:destination="@id/emailVerificationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/emailVerificationFragment"
+        android:name="com.materialdesign.verification.EmailVerificationFragment"
+        android:label="EmailVerificationFragment" >
+        <action
+            android:id="@+id/action_emailVerificationFragment_to_createNewPassword"
+            app:destination="@id/createNewPassword" />
+        <argument
+            android:name="verificationCode"
+            app:argType="string" />
+        <argument android:name="emailAdress"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/createNewPassword"
+        android:name="com.materialdesign.verification.CreateNewPassword"
+        android:label="CreateNewPassword" >
+        <action
+            android:id="@+id/action_createNewPassword_to_mainInfoFragment"
+            app:destination="@id/mainInfoFragment" />
+        <argument
+            android:name="firstPassword"
+            app:argType="string" />
+        <argument
+            android:name="repeatPassword"
+            app:argType="string" />
+        <argument
+            android:name="verificationCode"
+            app:argType="string" />
+        <argument
+            android:name="emailAdress"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainInfoFragment"
+        android:name="com.materialdesign.verification.MainInfoFragment"
+        android:label="MainInfoFragment" >
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="surname"
+            app:argType="string" />
+        <argument
+            android:name="firstPassword"
+            app:argType="string" />
+        <argument android:name="repeatPassword"
+            app:argType="string" />
+        <argument
+            android:name="verificationCode"
+            app:argType="string" />
+        <argument
+            android:name="emailAdress"
+            app:argType="string" />
+    </fragment>
+</navigation>
