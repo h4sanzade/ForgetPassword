@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".RegistrationFragment">
+    tools:context=".MainInfoFragment">
 
 
     <TextView
@@ -19,8 +19,7 @@
         android:layout_marginTop="24dp"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:textColor="#111111"
-        >
+        android:textColor="#111111">
 
     </TextView>
 
@@ -45,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/enter_name"
-            android:inputType="textEmailAddress"
+            android:inputType="textPersonName"
             android:padding="15dp"
             android:textColor="#777777"
             android:textSize="14sp" />
@@ -72,7 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/enter_surname"
-            android:inputType="textEmailAddress"
+            android:inputType="textPersonName"
             android:padding="15dp"
             android:textColor="#777777"
             android:textSize="14sp" />
@@ -90,13 +89,12 @@
         app:boxCornerRadiusTopEnd="8dp"
         app:boxCornerRadiusTopStart="8dp"
         app:boxStrokeWidth="0dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginStart="32dp"
-        app:endIconDrawable="@drawable/ic_nextarrow"
-        app:endIconMode="custom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/surnameInputLayout">
+        app:layout_constraintTop_toBottomOf="@id/surnameInputLayout"
+        app:layout_constraintWidth_percent="0.85"
+        app:endIconDrawable="@drawable/ic_nextarrow"
+        app:endIconMode="custom">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/genderEditText"
@@ -105,7 +103,6 @@
             android:focusable="false"
             android:hint="@string/gender"
             android:inputType="none"
-
             android:padding="15dp"
             android:textColor="#777777"
             android:textSize="14sp" />
@@ -114,6 +111,7 @@
 
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/continueButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:backgroundTint="#111111"
@@ -131,9 +129,5 @@
         android:layout_marginStart="20dp">
 
     </com.google.android.material.button.MaterialButton>
-
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
