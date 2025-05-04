@@ -26,17 +26,17 @@ class CreateNewPassword : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Get arguments from SafeArgs
+
         val args = CreateNewPasswordArgs.fromBundle(requireArguments())
-        emailAddress = args.emailAdress // Using the name from navigation graph
+        emailAddress = args.emailAdress
         verificationCode = args.verificationCode
 
-        // Set up continue button
+
         binding.continueButton.setOnClickListener {
             val firstPassword = binding.passwordInputEditText.text.toString()
             val repeatPassword = binding.repeatPasswordEditText.text.toString()
 
-            // Validate passwords
+
             if (firstPassword.isEmpty() || repeatPassword.isEmpty()) {
                 Toast.makeText(context, "Please fill all fields", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -47,7 +47,7 @@ class CreateNewPassword : Fragment() {
                 return@setOnClickListener
             }
 
-            // Navigate to Main Info fragment
+
             findNavController().navigate(
                 CreateNewPasswordDirections.actionCreateNewPasswordToMainInfoFragment(
                     emailAdress = emailAddress,

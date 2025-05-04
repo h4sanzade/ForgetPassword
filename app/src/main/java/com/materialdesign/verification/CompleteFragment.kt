@@ -12,7 +12,7 @@ import com.materialdesign.verification.databinding.FragmentCompleteBinding
 class CompleteFragment : Fragment() {
     private lateinit var binding: FragmentCompleteBinding
 
-    // User data from SafeArgs
+
     private var emailAddress: String = ""
     private var name: String = ""
     private var surname: String = ""
@@ -20,14 +20,13 @@ class CompleteFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Get all arguments from SafeArgs
+
         val args = CompleteFragmentArgs.fromBundle(requireArguments())
-        emailAddress = args.emailAdress  // Note: Using the name from navigation graph, even with typo
+        emailAddress = args.emailAdress
         name = args.name
         surname = args.surname
         gender = args.gender
-        // Note: We also have args.firstPassword, args.repeatPassword, args.verificationCode
-        // but not displaying those for security reasons
+
     }
 
     override fun onCreateView(
@@ -42,7 +41,7 @@ class CompleteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Create a text view to display all user data
+
         val userDataTextView = TextView(requireContext()).apply {
             text = """
                 Registration Complete!
@@ -53,18 +52,16 @@ class CompleteFragment : Fragment() {
                 Gender: $gender
             """.trimIndent()
 
-            textSize = 16f
-            setPadding(16, 16, 16, 16)
+
         }
 
-        // Add the text view to the container
+
         binding.resultContainer.removeAllViews()
         binding.resultContainer.addView(userDataTextView)
 
-        // Setup save button action
+
         binding.saveButton.setOnClickListener {
-            // Here you would typically save the data to a database or shared preferences
-            // For now, just show a message and go back to the start
+
             findNavController().navigate(R.id.registrationFragment)
         }
     }

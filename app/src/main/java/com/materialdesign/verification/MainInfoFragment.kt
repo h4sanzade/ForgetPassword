@@ -13,7 +13,7 @@ import com.materialdesign.verification.databinding.FragmentMainInfoBinding
 class MainInfoFragment : Fragment() {
     private lateinit var binding: FragmentMainInfoBinding
 
-    // User data from SafeArgs
+
     private var emailAddress: String = ""
     private var verificationCode: String = ""
     private var firstPassword: String = ""
@@ -22,7 +22,6 @@ class MainInfoFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Get arguments from SafeArgs
         val args = MainInfoFragmentArgs.fromBundle(requireArguments())
         emailAddress = args.emailAdress
         verificationCode = args.verificationCode
@@ -42,24 +41,23 @@ class MainInfoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Set up gender selection
+
         binding.genderEditText.setOnClickListener {
             showGenderSelectionDialog()
         }
 
-        // Set up continue button
+
         binding.continueButton.setOnClickListener {
             val name = binding.nameInputEditText.text.toString()
             val surname = binding.surnameEditText.text.toString()
             val gender = binding.genderEditText.text.toString()
 
-            // Validate input fields
+
             if (name.isEmpty() || surname.isEmpty() || gender.isEmpty()) {
                 Toast.makeText(context, "Please fill all fields", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // Navigate to Complete fragment
             findNavController().navigate(
                 MainInfoFragmentDirections.actionMainInfoFragmentToCompleteFragment(
                     emailAdress = emailAddress,
@@ -75,7 +73,7 @@ class MainInfoFragment : Fragment() {
     }
 
     private fun showGenderSelectionDialog() {
-        // Create and show a dialog for gender selection
+
         val genders = arrayOf("Male", "Female", "Other")
 
         androidx.appcompat.app.AlertDialog.Builder(requireContext())

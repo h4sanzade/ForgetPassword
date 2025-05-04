@@ -11,7 +11,6 @@ import com.materialdesign.verification.databinding.FragmentEmailVerificationBind
 
 class EmailVerificationFragment : Fragment() {
     private lateinit var binding: FragmentEmailVerificationBinding
-    private var verificationCodeFromArgs: String = ""
     private var emailAddress: String = ""
 
     override fun onCreateView(
@@ -26,28 +25,27 @@ class EmailVerificationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Get arguments from SafeArgs
-        val args = EmailVerificationFragmentArgs.fromBundle(requireArguments())
-        verificationCodeFromArgs = args.verificationCode
-        emailAddress = args.emailAdress // Using the name from navigation graph
 
-        // Set up continue button
+        val args = EmailVerificationFragmentArgs.fromBundle(requireArguments())
+        emailAddress = args.emailAdress
+
+
         binding.continueButton.setOnClickListener {
             val enteredCode = binding.emailInputEditText.text.toString()
 
-            // Validate the verification code
-            if (enteredCode == verificationCodeFromArgs) {
-                // Navigate to Create New Password fragment
-                findNavController().navigate(
-                    EmailVerificationFragmentDirections.actionEmailVerificationFragmentToCreateNewPassword(
-                        emailAdress = emailAddress,
-                        verificationCode = verificationCodeFromArgs
-                    )
-                )
-            } else {
-                // Show error if code doesn't match
-                Toast.makeText(context, "Invalid verification code", Toast.LENGTH_SHORT).show()
+
+            if (enteredCode.isEmpty()) {
+                Toast.makeText(context, "Please enter a verification code", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
+
+
+            findNavController().navigate(
+                EmailVerificationFragmentDirections.actionEmailVerificationFragmentToCreateNewPassword(
+                    emailAdress = emailAddress,
+                    verificationCode = enteredCode
+                )
+            )
         }
     }
 }
