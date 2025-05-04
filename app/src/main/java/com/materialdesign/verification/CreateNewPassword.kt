@@ -28,7 +28,7 @@ class CreateNewPassword : Fragment() {
 
         // Get arguments from SafeArgs
         val args = CreateNewPasswordArgs.fromBundle(requireArguments())
-        emailAddress = args.emailAdress
+        emailAddress = args.emailAdress // Using the name from navigation graph
         verificationCode = args.verificationCode
 
         // Set up continue button

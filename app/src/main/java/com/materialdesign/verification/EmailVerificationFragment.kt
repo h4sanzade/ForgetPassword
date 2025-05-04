@@ -11,7 +11,7 @@ import com.materialdesign.verification.databinding.FragmentEmailVerificationBind
 
 class EmailVerificationFragment : Fragment() {
     private lateinit var binding: FragmentEmailVerificationBinding
-    private var verificationCode: String = ""
+    private var verificationCodeFromArgs: String = ""
     private var emailAddress: String = ""
 
     override fun onCreateView(
@@ -28,21 +28,20 @@ class EmailVerificationFragment : Fragment() {
 
         // Get arguments from SafeArgs
         val args = EmailVerificationFragmentArgs.fromBundle(requireArguments())
-        verificationCode = args.verificationCode
-        emailAddress = args.emailAdress
+        verificationCodeFromArgs = args.verificationCode
+        emailAddress = args.emailAdress // Using the name from navigation graph
 
         // Set up continue button
         binding.continueButton.setOnClickListener {
             val enteredCode = binding.emailInputEditText.text.toString()
 
             // Validate the verification code
-            if (enteredCode == verificationCode) {
+            if (enteredCode == verificationCodeFromArgs) {
                 // Navigate to Create New Password fragment
                 findNavController().navigate(
                     EmailVerificationFragmentDirections.actionEmailVerificationFragmentToCreateNewPassword(
                         emailAdress = emailAddress,
-                        verificationCode = verificationCode
-
+                        verificationCode = verificationCodeFromArgs
                     )
                 )
             } else {

@@ -10,9 +10,6 @@
         android:name="com.materialdesign.verification.RegistrationFragment"
         android:label="fragment_registration"
         tools:layout="@layout/fragment_registration" >
-        <argument
-            android:name="emailAdress"
-            app:argType="string" />
         <action
             android:id="@+id/action_registrationFragment_to_emailVerificationFragment"
             app:destination="@id/emailVerificationFragment" />
@@ -20,23 +17,41 @@
     <fragment
         android:id="@+id/emailVerificationFragment"
         android:name="com.materialdesign.verification.EmailVerificationFragment"
-        android:label="EmailVerificationFragment" >
+        android:label="fragment_email_verification"
+        tools:layout="@layout/fragment_email_verification" >
         <action
             android:id="@+id/action_emailVerificationFragment_to_createNewPassword"
             app:destination="@id/createNewPassword" />
         <argument
             android:name="verificationCode"
             app:argType="string" />
-        <argument android:name="emailAdress"
+        <argument
+            android:name="emailAdress"
             app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/createNewPassword"
         android:name="com.materialdesign.verification.CreateNewPassword"
-        android:label="CreateNewPassword" >
+        android:label="fragment_create_new_password"
+        tools:layout="@layout/fragment_create_new_password" >
         <action
             android:id="@+id/action_createNewPassword_to_mainInfoFragment"
             app:destination="@id/mainInfoFragment" />
+        <argument
+            android:name="verificationCode"
+            app:argType="string" />
+        <argument
+            android:name="emailAdress"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainInfoFragment"
+        android:name="com.materialdesign.verification.MainInfoFragment"
+        android:label="fragment_main_info"
+        tools:layout="@layout/fragment_main_info" >
+        <action
+            android:id="@+id/action_mainInfoFragment_to_completeFragment"
+            app:destination="@id/completeFragment" />
         <argument
             android:name="firstPassword"
             app:argType="string" />
@@ -51,9 +66,10 @@
             app:argType="string" />
     </fragment>
     <fragment
-        android:id="@+id/mainInfoFragment"
-        android:name="com.materialdesign.verification.MainInfoFragment"
-        android:label="MainInfoFragment" >
+        android:id="@+id/completeFragment"
+        android:name="com.materialdesign.verification.CompleteFragment"
+        android:label="fragment_complete"
+        tools:layout="@layout/fragment_complete" >
         <argument
             android:name="name"
             app:argType="string" />
@@ -61,9 +77,13 @@
             android:name="surname"
             app:argType="string" />
         <argument
+            android:name="gender"
+            app:argType="string" />
+        <argument
             android:name="firstPassword"
             app:argType="string" />
-        <argument android:name="repeatPassword"
+        <argument
+            android:name="repeatPassword"
             app:argType="string" />
         <argument
             android:name="verificationCode"

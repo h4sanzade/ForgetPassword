@@ -22,7 +22,7 @@ class CompleteFragment : Fragment() {
         super.onCreate(savedInstanceState)
         // Get all arguments from SafeArgs
         val args = CompleteFragmentArgs.fromBundle(requireArguments())
-        emailAddress = args.emailAdress
+        emailAddress = args.emailAdress  // Note: Using the name from navigation graph, even with typo
         name = args.name
         surname = args.surname
         gender = args.gender
